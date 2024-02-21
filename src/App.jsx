@@ -1,15 +1,13 @@
-import { useState } from 'react'
 import './App.css'
-import Graph from './components/Graph.jsx'
-import ProgressGraph from './components/ProgressGraph'
+import { AuthProvider } from './context/AuthContext'
+import MainNavigator from './MainNavigator'
 
 function App() {
 
   return (
-    <>
-    <Graph />
-    <ProgressGraph />
-    </>
+    <AuthProvider >
+      <MainNavigator />
+    </AuthProvider>
   )
 }
 
