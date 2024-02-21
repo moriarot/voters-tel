@@ -4,6 +4,7 @@ import GraphScreen from './screens/GraphsScreen';
 import LoginScreen from './screens/Login';
 import SplashScreen from './screens/SplashScreen';
 import { DataElectionProvider } from './context/DataElectionContext';
+import TableScreen from './screens/TableScreen';
 
 export const LOGIN = 'login';
 export const GRAPH = 'graph';
@@ -22,7 +23,7 @@ function MainNavigator() {
           {/* <Header pageToShow={pageToShow} /> */}
           {!localStorage.getItem('isAuthenticated') && <LoginScreen setPage={setPage}/>}
           {(localStorage.getItem('isAuthenticated') && pageToShow == GRAPH) && <GraphScreen setPage={setPage}/>}
-          {(localStorage.getItem('isAuthenticated') && pageToShow == TABLE) && <FinishMessage setPage={setPage} />}
+          {(localStorage.getItem('isAuthenticated') && pageToShow == TABLE) && <TableScreen setPage={setPage} />}
         </DataElectionProvider>
       </div>
     </div>
