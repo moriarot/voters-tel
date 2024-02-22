@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext'
 import Utils from '../components/Utils';
 import './Login.css';
-import { GRAPH } from '../MainNavigator';
+import { GRAPH, TABLE } from '../MainNavigator';
 const apiKey = "a12345bC4@11!lo9987"
 
 const Login = ({ setPage }) => {
@@ -106,7 +106,7 @@ const Login = ({ setPage }) => {
           localStorage.setItem('userPhone', phone)
           localStorage.setItem('isAuthenticated', 'true');
           login();
-          setPage(GRAPH);
+          setPage(TABLE);
         } else {
           Utils.showResponseDialog(responseData.message,'שגיאה!')
         }

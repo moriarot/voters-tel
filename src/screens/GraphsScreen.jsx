@@ -6,8 +6,9 @@ import Utils from '../components/Utils';
 import { useDataElection } from '../context/DataElectionContext';
 // import { useStatuses } from '../context/StatusesContext';
 // import DropDownPicker from 'react-native-dropdown-picker';
-
-export default function GraphsScreen() {
+import { TABLE } from '../MainNavigator';
+import './GraphsScreen.css';
+export default function GraphsScreen({setPage}) {
   const [statusTypeId, setStatusTypeId] = useState('');
   const [labels, setLabels] = useState([]);
   const [dataNumbers, setDataNumbers] = useState([]);
@@ -86,6 +87,7 @@ export default function GraphsScreen() {
 
   return (
     <div className="appContainer">
+        <button onClick={()=>{setPage(TABLE)}}>עבור לטבלה</button>
        {/* {statusesArr && statusTypeId && <DropDownPicker
         open={openDropDown}
         value={statusTypeId}
@@ -110,12 +112,17 @@ export default function GraphsScreen() {
         <div className="loadingContainer">
           <ActivityIndicator size="large" color="#8EEEE5" />
         </div>
-      </> : <>
+      </> : <div className='container-graph'>
+      <div>
         <h1 className="title">התקדמות במיפוי</h1>
         <ProgressGraph progress={progress} />
+        </div> 
+        <div>
         <h1 className="title">מיפוי מצביעים</h1>
         <BarGraph labels={labels} dataNumbers={dataNumbers} />
-      </>}
+
+      </div>
+      </div>}
     </div>
   );
 };

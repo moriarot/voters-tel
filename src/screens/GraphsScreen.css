@@ -2,7 +2,7 @@
 
 .appContainer {
     flex: 1;
-    background-color: #F4F4F4;
+    /* background-color: #F4F4F4; */
     padding: 20px;
   }
   
@@ -30,4 +30,6 @@
     margin-top: 20px;
     padding: 50px;
   }
-  
+  .container-graph{
+    display: flex;
+  }

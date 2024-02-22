@@ -43,11 +43,11 @@ export default function ProgressGraph({ progress= 0.5 }) {
 }
 
 const styles = {
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
-  },
+  // container: {
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   marginTop: 20,
+  // },
   progressText: {
     marginTop: -140,
     paddingLeft: 120,

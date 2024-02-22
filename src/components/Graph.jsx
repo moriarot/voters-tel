@@ -41,7 +41,6 @@ const Graph = () => {
 
   return (
     <div>
-      <h2>Bar Graph Example</h2>
       <Bar data={data} options={options} />
     </div>
   );

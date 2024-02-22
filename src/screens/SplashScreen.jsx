@@ -11,7 +11,7 @@ export default function SplashScreen() {
                 backgroundColor: '#f0f0f0',
         }}>
              <img
-                source={"require('../../assets/icon.png')"}
+                source={require('../../assets/icon.png')}
                 style={{ width: 80, height: 80 }}
             />
         </div>

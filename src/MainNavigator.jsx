@@ -5,13 +5,14 @@ import LoginScreen from './screens/Login';
 import SplashScreen from './screens/SplashScreen';
 import { DataElectionProvider } from './context/DataElectionContext';
 import TableScreen from './screens/TableScreen';
+import Header from './components/Header';
 
 export const LOGIN = 'login';
 export const GRAPH = 'graph';
 export const TABLE = 'table';
 
 function MainNavigator() {
-  const [pageToShow, setPageToShow] = useState(localStorage.getItem('isAuthenticated') ? GRAPH : LOGIN)
+  const [pageToShow, setPageToShow] = useState(localStorage.getItem('isAuthenticated') ? TABLE : LOGIN)
 
   const setPage = (newPage) => {
     setPageToShow(newPage);
@@ -20,10 +21,11 @@ function MainNavigator() {
     <div className='App'>
       <div className='container'>
         <DataElectionProvider>
+          <Header  />
           {/* <Header pageToShow={pageToShow} /> */}
           {!localStorage.getItem('isAuthenticated') && <LoginScreen setPage={setPage}/>}
-          {(localStorage.getItem('isAuthenticated') && pageToShow == GRAPH) && <GraphScreen setPage={setPage}/>}
           {(localStorage.getItem('isAuthenticated') && pageToShow == TABLE) && <TableScreen setPage={setPage} />}
+          {(localStorage.getItem('isAuthenticated') && pageToShow == GRAPH) && <GraphScreen setPage={setPage}/>}
         </DataElectionProvider>
       </div>
     </div>
