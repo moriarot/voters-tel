@@ -1,6 +1,6 @@
 import React from 'react';
 import './Table.css';
-
+import Connection from './Connection.jsx'
 const Table = () => {
   const title = ['שם התומך', 'תז', 'נייד', 'מצב', 'הערה'];
   const data = [
@@ -20,6 +20,7 @@ const Table = () => {
               {t}
             </th>
           ))}
+          <th className="table-cell" ></th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +31,7 @@ const Table = () => {
                 {row[t]}
               </td>
             ))}
+            <td className="table-cell"><Connection /></td>
           </tr>
         ))}
       </tbody>
