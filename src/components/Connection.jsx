@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import Image from '../assets/tak-logo.png';
-import logoTak from '../tak-logo/tak-logo.png';
-// import './Connection.css';
+import React, { useState } from 'react';
 import contact from '../assets/Contact.svg';
+import whatsapp from '../assets/Whatsapp.svg';
+import email from '../assets/Email.svg';
+import message from '../assets/message.svg';
+import phone from '../assets/phone.svg';
 import './Connection.css';
 
-const Connection = ({  }) => {
+const Connection = () => {
+  const [openConnection, setOpenConnection] = useState(false);
 
-const [openConnection, setOpenConnection] = useState(false);
-const showConnection = ()=>{
+  const showConnection = () => {
     setOpenConnection(!openConnection);
-}
+  };
+
   return (
     <div className="connection-container">
-      {!openConnection ? <img
-        onClick={showConnection}
-        src={contact}
-        alt="Description of the image"
-        className=""
-      />
-       : <div className="div-connection">
-      {/* <img
-        // src={contact}
-        alt="Description of the image"
-        className="div-connection"
-      /> */}
-      <p>icon icon</p>
-      </div>}
+      {!openConnection ? (
+        <img onClick={showConnection} src={contact} alt="Contact" className="" />
+      ) : (
+        <div className="div-connection" onClick={showConnection}>
+          <img src={whatsapp} alt="WhatsApp" className="" />
+          <img src={email} alt="Email" className="" />
+          <img src={message} alt="Message" className="" />
+          <img src={phone} alt="Phone" className="" />
+        </div>
+      )}
     </div>
   );
 };

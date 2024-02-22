@@ -111,10 +111,10 @@ const Login = ({ setPage }) => {
           Utils.showResponseDialog(responseData.message,'שגיאה!')
         }
       } else {
-        Utils.showResponseDialog('אירעה שגיאה , 4יש לנסות שנית','שגיאה!')
+        Utils.showResponseDialog('אירעה שגיאה , יש לנסות שנית','שגיאה!')
       }
     } catch (error) {
-       Utils.showResponseDialog('אירעה שגיאה , יש 3לנסות שנית','שגיאה!')
+       Utils.showResponseDialog('אירעה שגיאה , יש לנסות שנית','שגיאה!')
     }
     setLoadingVertifyCode(false);
   }
