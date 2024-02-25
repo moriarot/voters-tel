@@ -1,7 +1,8 @@
 .container-table{
     width: 100%;
     overflow-x: hidden;
-    max-height: 100vh;
+    max-height: 85vh;
     overflow-y: scroll;
-    height: 90vh;
+    height: 85vh;
+    margin-top: 12vh;
 }

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Table.css';
 import Connection from './Connection.jsx'
+import { useDataElection } from '../context/DataElectionContext';
+
 const Table = () => {
   const title = ['שם התומך', 'תז', 'נייד', 'מצב', 'הערה'];
   const [dataTable, setDatatable] = useState([]);
+  const { updateDataElectionArr, updateCities, cityShow } = useDataElection()
 
     useEffect(() => {
       getDataTable();
@@ -37,6 +40,7 @@ const Table = () => {
             // Handle success
             // filter sow only support
             setDatatable(responseData.message.filter(voter => voter.status === "1"));
+            updateDataElectionArr(responseData.logos)
           } else {
             Utils.showResponseDialog(responseData.message,'שגיאה!')
           }
