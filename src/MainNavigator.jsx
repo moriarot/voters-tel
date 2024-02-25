@@ -21,7 +21,7 @@ function MainNavigator() {
     <div className='App'>
       <div className='container'>
         <DataElectionProvider>
-          <Header  />
+          {localStorage.getItem('isAuthenticated') && <Header  />}
           {/* <Header pageToShow={pageToShow} /> */}
           {!localStorage.getItem('isAuthenticated') && <LoginScreen setPage={setPage}/>}
           {(localStorage.getItem('isAuthenticated') && pageToShow == TABLE) && <TableScreen setPage={setPage} />}

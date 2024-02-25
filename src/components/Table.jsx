@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Table.css';
 import Connection from './Connection.jsx'
 const Table = () => {
+  const title = ['שם התומך', 'תז', 'נייד', 'מצב', 'הערה'];
+  const [dataTable, setDatatable] = useState([]);
 
+    useEffect(() => {
+      getDataTable();
+    }, []);
     // the function get data table
     const getDataTable = async () => {
-
-      // Show the progress bar
-      //progressBar.style.visibility = 'visible';
-
       const name = localStorage.getItem('userName')
       const phone = localStorage.getItem('userPhone')
+      const apiKey = "a12345bC4@11!lo9987"
 
       const parameters = new FormData();
-      parameters.append('get_data_tel_table', code);
+      // parameters.append('get_data_tel_table', code);
+      parameters.append('get_voters', true);
+      parameters.append('auth', true);
       parameters.append('apiKey', apiKey);
       parameters.append('name', name);
       parameters.append('phone', phone);
@@ -31,12 +35,8 @@ const Table = () => {
           // Process the responseData further, if needed
           if (responseData.success === true) {
             // Handle success
-            setSentCode(false);
-            localStorage.setItem('userName', name)
-            localStorage.setItem('userPhone', phone)
-            localStorage.setItem('isAuthenticated', 'true');
-            login();
-            setPage(TABLE);
+            // filter sow only support
+            setDatatable(responseData.message.filter(voter => voter.status === "1"));
           } else {
             Utils.showResponseDialog(responseData.message,'שגיאה!')
           }
@@ -46,23 +46,16 @@ const Table = () => {
       } catch (error) {
          Utils.showResponseDialog('אירעה שגיאה , יש לנסות שנית','שגיאה!')
       }
-      setLoadingVertifyCode(false);
     }
 
 
-  const title = ['שם התומך', 'תז', 'נייד', 'מצב', 'הערה'];
-  const data = [
-    { id: 1, 'שם התומך': 'נטע טי', 'נייד': '0585727870', 'מצב': 'לא הצביע' },
-    { id: 2, 'שם התומך': 'נטע טי', 'נייד': '0585727870', 'מצב': 'לא הצביע' },
-    { id: 3, 'שם התומך': 'נטע טי', 'נייד': '0585727870', 'מצב': 'לא הצביע' },
-    { id: 4, 'שם התומך': 'נטע טי', 'נייד': '0585727870', 'מצב': 'לא הצביע' },
-    { id: 5, 'שם התומך': 'נטע טי', 'נייד': '0585727870', 'מצב': 'לא הצביע' },
-  ];
+  
 
   return (
     <table className="custom-table">
       <thead>
         <tr className="title-row">
+        <th className="table-cell" ></th>
           {title.map((t, index) => (
             <th key={index} className="table-cell">
               {t}
@@ -71,18 +64,20 @@ const Table = () => {
           <th className="table-cell" ></th>
         </tr>
       </thead>
+      {(!dataTable || dataTable.length == 0) ? <div className='loading'>טוען...</div> :
       <tbody>
-        {data.map((row) => (
+        {dataTable.map((row) => (
           <tr key={row.id}>
-            {title.map((t, index) => (
-              <td key={index} className="table-cell">
-                {row[t]}
-              </td>
-            ))}
+            <td className="table-cell"></td>
+            <td className="table-cell">{row["FirstName"]} {row["lastName"]}</td>
+            <td className="table-cell">{row["id"]}</td>
+            <td className="table-cell">{row["phone"]}</td>
+            <td className="table-cell">{row["status1"] == 1 ? 'הצביע' : 'לא הצביע'}</td>
+            <td className="table-cell">{row["note"]}</td>
             <td className="table-cell"><Connection /></td>
           </tr>
         ))}
-      </tbody>
+      </tbody>}
     </table>
   );
 };

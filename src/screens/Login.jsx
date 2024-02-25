@@ -121,8 +121,11 @@ const Login = ({ setPage }) => {
 
 
   return (
-        <div className="container">
-          <input
+        <div className="container-login">
+          <h1>ברוכים הבאים!</h1>
+         {!sentCode ? 
+          <div className='div-one-step-login'>
+         <input
             className={`input ${nameFocused && 'greenUnderline'}`}
             placeholder="שם משתמש"
             value={name}
@@ -139,13 +142,14 @@ const Login = ({ setPage }) => {
             onBlur={() => setPhoneFocused(false)}
             onFocus={() => setPhoneFocused(true)}
           />
-          <button className="button" onClick={handleSendCode}>
-            {loadingSentCode ? 'טוען...' : 'כניסה'}
+          <button className="button-login" onClick={handleSendCode}>
+            {loadingSentCode ? 'טוען...' : 'התחברות'}
           </button>
-          {sentCode && (
-            <div className="modalBackground">
-              <div className="modalContent">
-                <div className="titleModal">מצביעים</div>
+          </div>
+           : (
+            // <div className="modalBackground">
+              <div className="div-one-step-login">
+                {/* <div className="titleModal">מצביעים</div> */}
                 <input
                   className={`input ${codeFocused && 'greenUnderline'}`}
                   placeholder="קוד נשלח (6 ספרות)"
@@ -155,20 +159,26 @@ const Login = ({ setPage }) => {
                   onBlur={() => setCodeFocused(false)}
                   onFocus={() => setCodeFocused(true)}
                 />
-                <button className={`buttonbuttonModal`} onClick={handleVerifyCode}>
-                  {loadingVertifyCode ? 'טוען..' : 'אשר'}
+                <button className={`button-login`} onClick={handleVerifyCode}>
+                  {loadingVertifyCode ? 'טוען..' : 'התחברות'}
                 </button>
                 {sentSecondCode && <div style={{ textAlign: 'center', marginTop: 5 }}>נשלח קוד שוב...</div>}
-                <div className="buttonModalContainer">
+                 <div style={{ textAlign: 'center', marginTop: 5 }}>לא קילבת קוד?
+                 <span className="send-again" onClick={() => { handleSendCode(); setSentSecondCode(true); }}>
+                    שלח שוב
+                  </span>
+                 </div>
+                
+                {/* <div className="buttonModalContainer">
                   <button className="buttonModal" onClick={() => { setSentCode(false); setCodeFocused(false); }}>
                     בטל
                   </button>
                   <button className="buttonModal" onClick={() => { handleSendCode(); setSentSecondCode(true); }}>
                     שלח שוב
                   </button>
-                </div>
+                </div> */}
               </div>
-            </div>
+            // </div>
           )}
         </div>
   );

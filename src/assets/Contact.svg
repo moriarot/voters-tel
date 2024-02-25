@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45.114" height="39.694" viewBox="0 0 45.114 39.694">
+  <g id="Contact" transform="translate(-7 -6.975)">
+    <g id="Email" transform="translate(16.739 13.824)">
+      <g id="Rectangle_4" data-name="Rectangle 4" transform="translate(0)" fill="#fff" stroke="#000" stroke-width="1">
+        <rect width="35.375" height="24.354" rx="4" stroke="none"/>
+        <rect x="0.5" y="0.5" width="34.375" height="23.354" rx="3.5" fill="none"/>
+      </g>
+      <line id="Line_3" data-name="Line 3" x1="16.569" y2="11.778" transform="translate(16.761 1.899)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_16" data-name="Path 16" d="M.254.048,14.693,11.74" transform="translate(2.016 1.883)" fill="#fff" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+    </g>
+    <path id="phone" d="M37.566,27.326,29.107,23.7a1.813,1.813,0,0,0-2.115.521L23.246,28.8A28,28,0,0,1,9.864,15.416l4.577-3.746a1.808,1.808,0,0,0,.521-2.115L11.337,1.1A1.825,1.825,0,0,0,9.26.046L1.4,1.859A1.813,1.813,0,0,0,0,3.625c0,9.163,2.761,17.924,8.693,24.36C14.917,34.742,24.851,38.67,35.044,38.67a1.813,1.813,0,0,0,1.767-1.4l1.813-7.855A1.835,1.835,0,0,0,37.566,27.326Z" transform="translate(7.5 7.5)" fill="#fff" stroke="#000" stroke-width="1"/>
+  </g>
+</svg>

@@ -1,12 +1,14 @@
 /* styles.module.css */
 
-.container {
-    /* flex: 1;
-    align-items: center;
-    padding: 30px;
-    padding-top: 50px;
-    background-color: #f0f0f0; */
-  }
+.container-login {
+  margin: auto;
+    background-color: #D5EFFD;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
   
   .header {
     background-color: #17aee3;
@@ -25,22 +27,25 @@
   .input {
     width: 100%;
     height: 40px;
-    border-bottom-width: 1px;
-    border-bottom-color: #ccc;
+    border-width: 1px;
+    border-color: #ccc;
     margin-bottom: 10px;
-    padding-horizontal: 10px;
+    padding: 0px 11px;
     writing-mode: rtl;
+    border-radius: 1vh;
+    text-align: right;
   }
   
   .greenUnderline {
     border-bottom-color: #9decef;
   }
   
-  .button {
-    background-color: #0a8385;
+  .button-login {
+    background-color: #002561;
+    color: #FFFFFF;
     border-radius: 5px;
-    padding-vertical: 10px;
-    padding-horizontal: 20px;
+    /* padding-vertical: 10px; */
+    /* padding-horizontal: 20px; */
     margin-top: 10px;
   }
   
@@ -77,12 +82,26 @@
     width: 100%;
   }
   
-  .buttonModal {
-    padding: 10px;
+  .send-again {
+    border-bottom: 1px solid #002561;
+    margin: 3px;
+    cursor: pointer;
   }
   
   .buttonModalText {
     font-weight: bold;
     color: #8eeee5;
   }
-  
+  .div-one-step-login{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 39vw;
+    /* padding: 35vh 0; */
+    align-items: center;
+    justify-content: space-between;
+    height: 25vh;
+    background-color: #FFFFFFDE;
+    padding: 6vh 7vw;
+    border-radius: 5vh;
+  }

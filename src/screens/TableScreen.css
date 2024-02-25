@@ -1,3 +1,7 @@
 .container-table{
     width: 100%;
+    overflow-x: hidden;
+    max-height: 100vh;
+    overflow-y: scroll;
+    height: 90vh;
 }
