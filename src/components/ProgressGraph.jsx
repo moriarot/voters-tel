@@ -37,7 +37,7 @@ export default function ProgressGraph({ progress= 0.5 }) {
           fill="none"
         />
       </svg>
-      <div style={styles.progressText}>{Math.round(progress * 100)}%</div>
+      <div style={styles.progressText}>{progress * 100}%</div>
     </div>
   );
 }

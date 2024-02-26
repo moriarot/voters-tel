@@ -5,7 +5,7 @@ import Chart from 'chart.js/auto';
 // import { Char as ChartJS } from "chart.js/auto";
 import { Bar } from 'react-chartjs-2';
 
-const Graph = () => {
+const Graph = ({sumSupportVoted, sumSupportNotVoted}) => {
   // Sample data for the bars
   const data = {
     labels: [''],
@@ -13,14 +13,14 @@ const Graph = () => {
     datasets: [
       {
         label: 'הצביע',
-        data: [12], // Replace with your actual data
+        data: [sumSupportVoted], // Replace with your actual data
         backgroundColor: 'rgba(75,192,192,0.2)',
         borderColor: 'rgba(75,192,192,1)',
         borderWidth: 1,
       },
       {
         label: 'לא הצביע',
-        data: [6], // Replace with your actual data
+        data: [sumSupportNotVoted], // Replace with your actual data
         backgroundColor: 'rgba(230,28,28,0.2)',
         borderColor: 'rgba(230,28,28,1)',
         borderWidth: 1,

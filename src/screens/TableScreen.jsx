@@ -6,8 +6,8 @@ import './TableScreen.css';
 const TableScreen = ({setPage}) => {
   return (
     <div className='container-table'>
-         {/* <button onClick={()=>{setPage(GRAPH)}}>עבור לגרפים</button> */}
         <Table />
+        <button className='button-change-page' onClick={()=>{setPage(GRAPH)}}>הצג לי גרפים כלליים</button>
     </div>
   );
 };

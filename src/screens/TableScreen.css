@@ -6,3 +6,11 @@
     height: 103vh;
     margin-top: 28vh;
 }
+.button-change-page{
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    background-color: #1a1a1a;
+    color: #f9f9f9;
+    z-index: 999;
+}

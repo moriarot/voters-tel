@@ -12,20 +12,22 @@ export const GRAPH = 'graph';
 export const TABLE = 'table';
 
 function MainNavigator() {
-  const [pageToShow, setPageToShow] = useState(localStorage.getItem('isAuthenticated') ? TABLE : LOGIN)
+  const isAuthenticated = localStorage.getItem('isAuthenticated');
+  const [pageToShow, setPageToShow] = useState(isAuthenticated ? TABLE : LOGIN)
 
   const setPage = (newPage) => {
     setPageToShow(newPage);
   };
+
   return (
     <div className='App'>
       <div className='container'>
         <DataElectionProvider>
-          {localStorage.getItem('isAuthenticated') && <Header  />}
+          {isAuthenticated && <Header  />}
           {/* <Header pageToShow={pageToShow} /> */}
-          {!localStorage.getItem('isAuthenticated') && <LoginScreen setPage={setPage}/>}
-          {(localStorage.getItem('isAuthenticated') && pageToShow == TABLE) && <TableScreen setPage={setPage} />}
-          {(localStorage.getItem('isAuthenticated') && pageToShow == GRAPH) && <GraphScreen setPage={setPage}/>}
+          {!isAuthenticated && <LoginScreen setPage={setPage}/>}
+          {(isAuthenticated && pageToShow == TABLE) && <TableScreen setPage={setPage} />}
+          {(isAuthenticated && pageToShow == GRAPH) && <GraphScreen setPage={setPage}/>}
         </DataElectionProvider>
       </div>
     </div>

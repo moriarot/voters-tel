@@ -9,52 +9,32 @@ import { useDataElection } from '../context/DataElectionContext';
 import { TABLE } from '../MainNavigator';
 import './GraphsScreen.css';
 export default function GraphsScreen({setPage}) {
-  const [statusTypeId, setStatusTypeId] = useState('');
-  const [labels, setLabels] = useState([]);
-  const [dataNumbers, setDataNumbers] = useState([]);
-  const [progress, setProgress] = useState(0.5);
+  const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(false);
-//   const { electionId } = useDataElection();
-//   const { statusesArr } = useStatuses();
-  const [openDropDown, setOpenDropDown] = useState(false);
-  const [statusesShow, setStatusesShow] = useState([]);
-  const [openDropDownCity, setOpenDropDownCity] = useState(false);
-  const [cityId, setCityId] = useState(0);
+  const { electionId, sumAllSupport, sumSupportVoted } = useDataElection();
 
   useEffect(() => {
     fetchDataGraphs();
-  }, [statusTypeId, cityId]);
-
-//   useEffect(() => {
-//     const renderedItems = statusesArr.map((status, index) => ({
-//       label: status['statusTypeName'],
-//       value: status['statusTypeId']
-//     }));
-//     setStatusesShow(renderedItems);
-//     setStatusTypeId(renderedItems[0]?.value);
-//   }, [statusesArr]);
+  }, []);
 
   const fetchDataGraphs = async () => {
-    if (localStorage.getItem('isAuthenticated')) {
-    // if (!electionId || (!statusesArr && !statusTypeId)) {
-    //   Utils.showResponseDialog('אירעה שגיאה', 'שגיאה!')
+    if (!electionId) {
+      Utils.showResponseDialog('אירעה שגיאה', 'שגיאה!')
       return;
     }
 
     setLoading(true);
     try {
       const apiKey = "a12345bC4@11!lo9987"
-      const userName = await AsyncStorage.getItem('userName');
-      const userPhone = await AsyncStorage.getItem('userPhone');
-
-    //   const statusTypeIdToPost = statusTypeId ? statusTypeId : statusesArr[0]['statusTypeId'];
+      const userName = localStorage.getItem('userName');
+      const userPhone = localStorage.getItem('userPhone');
       const parameters = new FormData();
       parameters.append('get_graphs', true);
       parameters.append('apiKey', apiKey);
       parameters.append('name', userName);
       parameters.append('phone', userPhone);
-      parameters.append('electionId', 'electionId');
-    //   parameters.append('statusTypeId', statusTypeIdToPost);
+      parameters.append('electionId', electionId);
+      parameters.append('statusTypeId', '3'); // status voted
 
       const response = await fetch('https://tak.co.il/election/index.php', {
         method: 'POST',
@@ -62,19 +42,10 @@ export default function GraphsScreen({setPage}) {
       });
 
       if (response.ok) {
-        console.log('q2');
         const responseData = await response.json();
-
-        const labelsFromData = Object.keys(responseData).filter(key => key !== "total");
-        const numbersFromData = Object.values(responseData).filter(value => value !== responseData.total);
-        const difference = responseData.total - responseData['לא ידוע'];
-        const percentage = difference / responseData.total;
-
-        setLabels(labelsFromData);
-        setDataNumbers(numbersFromData);
-        setProgress(percentage);
-        setLoading(false);
-
+        const percentage = responseData['הצביע'] / responseData.total;
+        setProgress(percentage.toFixed(3));
+        // setLoading(false);
       } else {
         setLoading(false);
         Utils.showResponseDialog('אירעה שגיאה', 'שגיאה!')
@@ -87,12 +58,7 @@ export default function GraphsScreen({setPage}) {
 
   return (
     <div className="appContainer">
-        <button onClick={()=>{setPage(TABLE)}}>עבור לטבלה</button>
-      {/* {loading || !labels ? <>
-        <div className="loadingContainer">
-          <ActivityIndicator size="large" color="#8EEEE5" />
-        </div>
-      </> :  */}
+        <button className='button-change-page' onClick={()=>{setPage(TABLE)}}>חזור לטבלה</button>
       {<div className='container-graph'>
         <div className='title-graphs'>
           <div>התומכים שלנו</div>
@@ -100,7 +66,7 @@ export default function GraphsScreen({setPage}) {
         </div>
         <div className='body-graphs'>
       <div>
-      <BarGraph labels={labels} dataNumbers={dataNumbers} />
+      <BarGraph sumSupportVoted={sumSupportVoted} sumSupportNotVoted={(sumAllSupport-sumSupportVoted)} />
 
         <h1 className="note title">*סטטוס המספרים עבור התומכים של רשימה זו</h1>
 

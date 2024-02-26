@@ -24,6 +24,7 @@
   }
   .search-div > img{
     width: 2vh;
+    cursor: pointer;
   }
 input.input-search {
     position: fixed;
