@@ -1,16 +1,17 @@
 /* styles.module.css */
 
-.appContainer {
-    flex: 1;
-    /* background-color: #F4F4F4; */
-    padding: 20px;
-  }
+.container-graph {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+    margin-top: 8vh;
+}
   
   .title {
     font-size: 18px;
     font-weight: bold;
     margin-top: 20px;
-    writing-mode: rtl;
+    /* writing-mode: rtl; */
   }
   
   .dropDownPickerContainer {
@@ -30,6 +31,22 @@
     margin-top: 20px;
     padding: 50px;
   }
-  .container-graph{
+  .title-graphs {
+    padding: 7px;
     display: flex;
-  }
+    font-size: 20px;
+    text-align: right;
+    background: #E0D9FE;
+}
+.title-graphs > div{
+  width: 50%;
+  padding-right: 11vh;
+
+}
+.body-graphs {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  height: inherit;
+  align-items: center;
+}

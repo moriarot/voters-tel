@@ -12,7 +12,7 @@ export default function GraphsScreen({setPage}) {
   const [statusTypeId, setStatusTypeId] = useState('');
   const [labels, setLabels] = useState([]);
   const [dataNumbers, setDataNumbers] = useState([]);
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(0.5);
   const [loading, setLoading] = useState(false);
 //   const { electionId } = useDataElection();
 //   const { statusesArr } = useStatuses();
@@ -88,39 +88,29 @@ export default function GraphsScreen({setPage}) {
   return (
     <div className="appContainer">
         <button onClick={()=>{setPage(TABLE)}}>עבור לטבלה</button>
-       {/* {statusesArr && statusTypeId && <DropDownPicker
-        open={openDropDown}
-        value={statusTypeId}
-        items={statusesShow}
-        setOpen={setOpenDropDown}
-        setValue={setStatusTypeId}
-        setItems={setStatusesShow}
-        containerStyle={styles.dropDownPickerContainer}
-        textStyle={styles.dropDownPickerText}
-  />} */}
-      {/*{statusesArr && statusTypeId && <DropDownPicker
-        open={openDropDownCity}
-        value={cityId}
-        items={city}
-        setOpen={setOpenDropDownCity}
-        setValue={setCityId}
-        //setItems={setStatusesShow}
-        containerStyle={styles.dropDownCity}
-        textStyle={styles.dropDownPickerText}
-      />}*/}
-      {loading || !labels ? <>
+      {/* {loading || !labels ? <>
         <div className="loadingContainer">
           <ActivityIndicator size="large" color="#8EEEE5" />
         </div>
-      </> : <div className='container-graph'>
+      </> :  */}
+      {<div className='container-graph'>
+        <div className='title-graphs'>
+          <div>התומכים שלנו</div>
+          <div>כלל המצביעים</div>
+        </div>
+        <div className='body-graphs'>
       <div>
-        <h1 className="title">התקדמות במיפוי</h1>
-        <ProgressGraph progress={progress} />
-        </div> 
-        <div>
-        <h1 className="title">מיפוי מצביעים</h1>
-        <BarGraph labels={labels} dataNumbers={dataNumbers} />
+      <BarGraph labels={labels} dataNumbers={dataNumbers} />
 
+        <h1 className="note title">*סטטוס המספרים עבור התומכים של רשימה זו</h1>
+
+      </div> 
+        <div>
+        <ProgressGraph progress={progress} />
+
+        <h1 className="note title">*אחוז המצביעים מכלל בעלי הזכות ברשות</h1>
+
+      </div>
       </div>
       </div>}
     </div>

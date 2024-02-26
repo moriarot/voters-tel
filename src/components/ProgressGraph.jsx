@@ -50,7 +50,7 @@ const styles = {
   // },
   progressText: {
     marginTop: -140,
-    paddingLeft: 120,
+    paddingRight: 120,
     textAlign: 'center',
     fontSize: 35,
     position: 'absolute',
