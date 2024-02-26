@@ -6,7 +6,9 @@ export const DataElectionProvider = ({ children }) => {
   const [dataElectionArr, setDataElectionArr] = useState([])
   const [cities, setCities] = useState([]);
   const [cityShow, setCitySow] = useState('');
-  
+  const [sumSupportVoted, setSumSupportVoted] = useState(0);
+  const [sumAllSupport, setSumAllSupport] = useState(0);
+
   const updateCities = (cities) => {
     const cityNames = cities && cities.map(item => item.City.trim());
     setCities(cityNames);
@@ -14,6 +16,16 @@ export const DataElectionProvider = ({ children }) => {
 
   const updateDataElectionArr = (electionData) => {
     setDataElectionArr(electionData);
+  }
+
+  const updateNumbersSupportVored = (voters) => {
+    const voterSupport = voters.filter(voter => voter.status === "1");
+    setSumAllSupport(voterSupport.length);
+    const sumVoted = voterSupport.reduce((sum, item) => {
+      return sum + (item.status3 === "1" ? 1 : 0);
+    }, 0);
+    setSumSupportVoted(sumVoted);
+    
   }
 
   const updateCitySow = (city) => {
@@ -29,7 +41,10 @@ export const DataElectionProvider = ({ children }) => {
     updateCities,
     cities,
     updateCitySow,
-    cityShow
+    cityShow,
+    updateNumbersSupportVored,
+    sumAllSupport,
+    sumSupportVoted
   };
 
   return (
