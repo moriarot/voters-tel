@@ -147,7 +147,7 @@ const Table = () => {
             <td className="table-cell">{row["City"].trim()}</td>
             <td className="table-cell">{row["status3"] == 1 ? 'הצביע' : 'לא הצביע'}</td>
             <td className="table-cell" style={{width: '25%'}}>{row["note"]}</td>
-            <td className="table-cell"><Connection /></td>
+            <td className="table-cell"><Connection phone={row["phone"]}/></td>
           </tr>
         ))}
       </tbody>}

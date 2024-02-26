@@ -6,7 +6,7 @@ import Utils from '../components/Utils';
 import { useDataElection } from '../context/DataElectionContext';
 // import { useStatuses } from '../context/StatusesContext';
 // import DropDownPicker from 'react-native-dropdown-picker';
-import { TABLE } from '../MainNavigator';
+import { HOME } from '../MainNavigator';
 import './GraphsScreen.css';
 export default function GraphsScreen({setPage}) {
   const [progress, setProgress] = useState(0);
@@ -58,7 +58,7 @@ export default function GraphsScreen({setPage}) {
 
   return (
     <div className="appContainer">
-        <button className='button-change-page' onClick={()=>{setPage(TABLE)}}>חזור לטבלה</button>
+        <button className='button-change-page' onClick={()=>{setPage(HOME)}}>חזור למסך הבית</button>
       {<div className='container-graph'>
         <div className='title-graphs'>
           <div>התומכים שלנו</div>

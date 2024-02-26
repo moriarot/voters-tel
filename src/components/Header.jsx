@@ -30,7 +30,7 @@ const Header = ({  }) => {
                 className='logo-header'
               /> : <div className='logo-header' ></div>}
               <div className='graphs'>
-                הצביעו {precentVotedFromAll}% מהתומכים שלנו
+                הצביעו {precentVotedFromAll.toFixed(3)}% מהתומכים שלנו
                 <div>{sumSupportVoted} מתוך {sumAllSupport}</div>
                 {/* <ProgressGraph /> */}
                 </div>

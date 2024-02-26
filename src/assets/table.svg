@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="279.591" height="161.179" viewBox="0 0 279.591 161.179">
+  <defs>
+    <filter id="Path_14" x="0" y="0" width="279.591" height="65.371" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_14-2" x="0" y="47.904" width="279.591" height="65.371" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_14-3" x="0" y="95.807" width="279.591" height="65.371" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="table" transform="translate(9 6)">
+    <g id="Group_54" data-name="Group 54" transform="translate(0 0)">
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#Path_14)">
+        <path id="Path_14-4" data-name="Path 14" d="M0,0H261.591V47.371H0Z" transform="translate(9 6)" fill="#fff"/>
+      </g>
+    </g>
+    <g id="Group_84" data-name="Group 84" transform="translate(0 47.904)">
+      <g transform="matrix(1, 0, 0, 1, -9, -53.9)" filter="url(#Path_14-2)">
+        <path id="Path_14-5" data-name="Path 14" d="M0,0H261.591V47.371H0Z" transform="translate(9 53.9)" fill="#fff"/>
+      </g>
+    </g>
+    <g id="Group_85" data-name="Group 85" transform="translate(0 95.807)">
+      <g transform="matrix(1, 0, 0, 1, -9, -101.81)" filter="url(#Path_14-3)">
+        <path id="Path_14-6" data-name="Path 14" d="M0,0H261.591V47.371H0Z" transform="translate(9 101.81)" fill="#fff"/>
+      </g>
+    </g>
+    <rect id="Rectangle_2" data-name="Rectangle 2" width="261.849" height="18.216" transform="translate(0.432 0.322)" fill="#bbb1e6"/>
+    <line id="Line_12" data-name="Line 12" y2="142.405" transform="translate(227.28 0.774)" fill="none" stroke="#838383" stroke-width="1"/>
+    <line id="Line_16" data-name="Line 16" y2="142.405" transform="translate(177.748 0.774)" fill="none" stroke="#838383" stroke-width="1"/>
+    <line id="Line_17" data-name="Line 17" y2="142.405" transform="translate(126.668 0.774)" fill="none" stroke="#838383" stroke-width="1"/>
+    <line id="Line_18" data-name="Line 18" y2="142.405" transform="translate(26.056 0.774)" fill="none" stroke="#838383" stroke-width="1"/>
+    <line id="Line_19" data-name="Line 19" y2="142.405" transform="translate(77.136 0.774)" fill="none" stroke="#838383" stroke-width="1"/>
+  </g>
+</svg>

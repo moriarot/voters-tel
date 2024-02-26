@@ -4,7 +4,7 @@
     /* bottom: 20px; */
     right: 20px;
     cursor: pointer;
-    z-index: 999;
+    /* z-index: 999; */
     min-height: 50px;
   }
   
@@ -32,4 +32,51 @@
   .div-connection img:hover {
     filter: brightness(0.8);
   }
-  
+  .container-msg{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    background: #0000003D;
+    z-index: 9999;
+    display: flex;
+}
+.msg-background{
+  background-color: #FFFFFF;
+  padding: 6vh 7vw;
+  border-radius: 5vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 27vw;
+  height: 50vh;
+}
+.input-msg{
+  width: 100%;
+    margin: 1vh 0;
+}
+.msg-to-phone{
+  margin: 2vh 0;
+}
+
+.title-to-send-msg {
+  text-align: center;
+  font-size: 3vh;
+  font-weight: bold;
+}
+.div-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.close-write-msg{
+  background: #ffff;
+  color: #242424;
+  border: 1px solid #242424;
+}
+.send-msg-whatsapp{
+  color: #ffff;
+  background: #242424;
+}

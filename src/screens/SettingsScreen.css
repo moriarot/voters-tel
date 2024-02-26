@@ -1,0 +1,20 @@
+.container-settings {
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    margin-top: 14vh;
+}
+.title-settings {
+    padding: 7px 42px;
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    background: #E0D9FE;
+}
+.body-settings{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}
