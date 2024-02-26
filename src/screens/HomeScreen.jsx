@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './HomeScreen.css';
 import table from '../assets/table.svg';
-import settings from '../assets/settings.jpeg';
-import graphs from '../assets/graphs.jpeg';
+import settings from '../assets/settings.svg';
+import graphs from '../assets/graphs.svg';
 import { TABLE, GRAPH, SETTINGS } from '../MainNavigator';
 import { useDataElection } from '../context/DataElectionContext';
 
@@ -68,7 +68,7 @@ const HomeScreen = ({setPage}) => {
         <div>תמונת מצב</div>
     </div>
     <div onClick={() => setPage(SETTINGS)}>
-         <img src={settings} alt="settings" className="" style={{width: '15vw'}} />
+         <img src={settings} alt="settings" className="" style={{width: '6vw'}} />
          <div>הגדרות</div>
     </div>
 

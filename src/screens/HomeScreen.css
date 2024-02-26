@@ -19,12 +19,12 @@
     /* color: #E0D9FE; */
     padding: 2vh;
     border-radius: 10px;
-    width: 20vw;
+    width: 16vw;
     height: 22vh;
     cursor: pointer;
 }
 .body-home > div > img {
-    width: 20vw;
+    width: 16vw;
     height: 16vh;
 }
 .button-change-page{

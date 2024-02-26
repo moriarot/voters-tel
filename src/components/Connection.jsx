@@ -81,11 +81,16 @@ const Connection = ({phone}) => {
     }
   }
   const whatsappVoter = async () => {
-    const apiKey = "a12345bC4@11!lo9987"
+    const apiKey = "a12345bC4@11!lo9987";
+    const name = localStorage.getItem('userName')
+    const userPhone = localStorage.getItem('userPhone')
+
     const parameters = new FormData();
     parameters.append('whatsapp_to_voter', true);
     parameters.append('auth', true);
     parameters.append('apiKey', apiKey);
+    parameters.append('name', name);
+    parameters.append('phoneUser', userPhone);
     parameters.append('phoneVoter', phone);
     parameters.append('textMsg', textMsg);
 
