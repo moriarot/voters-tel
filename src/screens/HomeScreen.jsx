@@ -9,7 +9,7 @@ import { useDataElection } from '../context/DataElectionContext';
 const HomeScreen = ({setPage}) => {
     const [tokenWhatsapp, setTokenWhatsapp] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const { updateDataElectionArr, updateNumbersSupportVored, cityShow } = useDataElection()
+    const { updateDataElectionArr, updateNumbersSupportVored, electionId } = useDataElection()
     
     useEffect(() => {
         getData();
@@ -63,8 +63,8 @@ const HomeScreen = ({setPage}) => {
           <img src={table} alt="table" className="" />
         <div>טלמרקטינג</div>
     </div>
-    <div onClick={() => setPage(GRAPH)}>
-          <img src={graphs} alt="graphs" className="" />
+    <div onClick={() => {if(!electionId) return; setPage(GRAPH)}} className={`${!electionId && 'laoding-data'}`}>
+        <img src={graphs} alt="graphs" className="" />
         <div>תמונת מצב</div>
     </div>
     <div onClick={() => setPage(SETTINGS)}>
