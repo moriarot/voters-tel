@@ -9,7 +9,12 @@
     flex-direction: column;
     justify-content: center;
 }
-  
+  .background-image{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    background: #D5EFFD;
+  }
   .header {
     background-color: #17aee3;
     padding: 20px;

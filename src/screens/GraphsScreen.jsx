@@ -8,10 +8,21 @@ import { useDataElection } from '../context/DataElectionContext';
 // import DropDownPicker from 'react-native-dropdown-picker';
 import { HOME } from '../MainNavigator';
 import './GraphsScreen.css';
+
 export default function GraphsScreen({setPage}) {
+  const [arrValuesGraph, setArrValuesGraph] = useState([[0,0], [0,0], [0,0]]);
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(false);
   const { electionId, sumAllSupport, sumSupportVoted } = useDataElection();
+
+  useEffect(() => {
+    // Set interval to execute the function every 30 seconds
+    const intervalId = setInterval(fetchDataGraphs, 30000);
+    // const intervalId = setInterval(getDataTable, 5000);
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array ensures the effect runs once after the initial render
 
   useEffect(() => {
     fetchDataGraphs();
@@ -29,7 +40,8 @@ export default function GraphsScreen({setPage}) {
       const userName = localStorage.getItem('userName');
       const userPhone = localStorage.getItem('userPhone');
       const parameters = new FormData();
-      parameters.append('get_graphs', true);
+      // parameters.append('get_graphs', true);
+      parameters.append('get_graphs_sql', true);
       parameters.append('apiKey', apiKey);
       parameters.append('name', userName);
       parameters.append('phone', userPhone);
@@ -43,7 +55,65 @@ export default function GraphsScreen({setPage}) {
 
       if (response.ok) {
         const responseData = await response.json();
-        const percentage = responseData['הצביע'] / responseData.total;
+        // console.log('Server response:', responseData);
+    
+        
+        // [[votedSupport, notVSupport], [votedNoKnow, notVNoKnow], [votedNoKnow, notVNoKnow]]
+        // [[1&1, (0||2)&1], [1&2, (0||2)&2], [1&(0||3||4), (0||2)&(0||3||4)] ] 
+        let countAllVoted = 0;
+        let countAllNotVoted = 0;
+        const arrValues = [
+          [0, 0], 
+          [0, 0], 
+          [0, 0]]
+      responseData.message.forEach((item)=>{
+        switch (item.status3) {
+          case '1':
+            {
+            countAllVoted += parseInt(item.count, 10);
+            switch (item.status) {
+              case '1':
+                arrValues[0][0]+= parseInt(item.count, 10);
+                break;
+                case '2':
+                  arrValues[1][0]+= parseInt(item.count, 10);
+                  break;
+                case '0':
+                case '3':
+                case '4':
+                default:
+                  arrValues[2][0]+= parseInt(item.count, 10);
+                  break;
+            }
+            break;
+          }
+          case '0':
+          case '2':
+          default:
+            {
+            countAllNotVoted += parseInt(item.count, 10);
+
+            switch (item.status) {
+              
+              case '1':
+                arrValues[0][1]+= parseInt(item.count, 10);
+                break;
+                case '2':
+                  arrValues[1][1]+= parseInt(item.count, 10);
+                  break;
+                case '0':
+                case '3':
+                case '4':
+                default:
+                  arrValues[2][1]+= parseInt(item.count, 10);
+                  break;
+            }
+            break;
+          }
+          }
+        })
+        setArrValuesGraph(arrValues);
+        const percentage = countAllVoted / (countAllVoted + countAllNotVoted);
         setProgress(percentage.toFixed(3));
         // setLoading(false);
       } else {
@@ -61,14 +131,14 @@ export default function GraphsScreen({setPage}) {
         <button className='button-change-page' onClick={()=>{setPage(HOME)}}>חזור למסך הבית</button>
       {<div className='container-graph'>
         <div className='title-graphs'>
-          <div>התומכים שלנו</div>
+          {/* <div>התומכים שלנו</div> */}
           <div>כלל המצביעים</div>
         </div>
         <div className='body-graphs'>
       <div>
-      <BarGraph sumSupportVoted={sumSupportVoted} sumSupportNotVoted={(sumAllSupport-sumSupportVoted)} />
+      <BarGraph arrValuesGraph={arrValuesGraph}/>
 
-        <h1 className="note title">*סטטוס המספרים עבור התומכים של רשימה זו</h1>
+        {/* <h1 className="note title">*סטטוס המספרים עבור התומכים של רשימה זו</h1> */}
 
       </div> 
         <div>

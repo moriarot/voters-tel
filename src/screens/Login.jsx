@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext'
 import Utils from '../components/Utils';
 import './Login.css';
+// import backgroundIcon from '../assets/background.svg';
 import { GRAPH, TABLE } from '../MainNavigator';
 const apiKey = "a12345bC4@11!lo9987"
 
@@ -123,6 +124,7 @@ const Login = ({ setPage }) => {
   return (
         <div className="container-login">
           <h1>ברוכים הבאים!</h1>
+          {/* <img src={backgroundIcon}  alt="Phone" className="background-image" /> */}
          {!sentCode ? 
           <div className='div-one-step-login'>
          <input

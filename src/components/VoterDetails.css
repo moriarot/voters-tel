@@ -1,0 +1,39 @@
+.container-details{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background: #0000003D;
+    z-index: 9999;
+    display: flex;
+}
+.details-background{
+    background-color: #FFFFFF;
+    padding: 6vh 7vw;
+    border-radius: 5vh;
+    margin: auto;
+    /* display: flex; */
+    /* text-align: center; */
+    /* justify-content: center; */
+    width: 70vw;
+    height: 50vh;
+}
+.body-details{
+    display: flex;
+}
+.rigth-flex-details{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    align-items: flex-start;
+}
+.title-details{
+    text-align: right;
+    font-weight: bold;
+    font-size: 4vh;
+}
+.voter-details {
+    text-align: right;
+    font-size: 3vh;
+    margin: 2vh 0;
+}

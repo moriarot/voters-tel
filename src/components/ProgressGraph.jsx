@@ -6,6 +6,7 @@ export default function ProgressGraph({ progress= 0.5 }) {
   const strokeWidth = 20;
   const circumference = 2 * Math.PI * radius;
   const [offset, setOffset] = useState(0);
+  const process = progress * 100;
 
   useEffect(() => {
     const newOffset = (1 - progress) * circumference;
@@ -37,7 +38,7 @@ export default function ProgressGraph({ progress= 0.5 }) {
           fill="none"
         />
       </svg>
-      <div style={styles.progressText}>{progress * 100}%</div>
+      <div style={styles.progressText}>{process.toFixed(1)}%</div>
     </div>
   );
 }

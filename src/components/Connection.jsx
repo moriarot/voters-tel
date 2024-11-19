@@ -4,12 +4,13 @@ import contact from '../assets/Contact.svg';
 import whatsapp from '../assets/Whatsapp.svg';
 import email from '../assets/Email.svg';
 import message from '../assets/message.svg';
+import editIcon from '../assets/edit.svg';
 import phoneIcon from '../assets/phone.svg';
 import './Connection.css';
 const CALL = 'call';
 const WHATSAPP = 'Whatsapp';
 
-const Connection = ({phone}) => {
+const Connection = ({phone, id, note, name, getDataTable}) => {
   const [openConnection, setOpenConnection] = useState(false);
   const [textMsg, setTextMsg] = useState('');
   const [writeMsg, setWriteMsg] = useState('');
@@ -17,6 +18,8 @@ const Connection = ({phone}) => {
   const [error, setError] = useState('');
   const [call, setCall] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [editNote, setEditNote] = useState('');
+  const [textNote, setTextNote] = useState(note);
 
   const showConnection = () => {
     setOpenConnection(!openConnection);
@@ -26,8 +29,20 @@ const Connection = ({phone}) => {
     setWriteMsg(true);
   }
   const handleChange = (e) =>{
-    //chech data
+    //check data
     setTextMsg(e.target.value);
+  }
+  const handleChangeNote = (e) =>{
+    //check data
+    const inputValue = e.target.value;
+
+    // Define a regular expression for allowed characters
+    // const allowedCharactersRegex = /^[a-zA-Z\s\?\:\!\,\.\'\u0590-\u05FF]+$/;
+    const allowedCharactersRegex = /^[a-zA-Z\s\!\,\.\:\'\u0590-\u05FF?\-\d]+$/;
+    // Check if the input value matches the allowed characters
+    if (allowedCharactersRegex.test(inputValue) || inputValue === '') {
+      setTextNote(inputValue);
+    }
   }
   const sendWhatsapp = () =>{
     whatsappVoter();
@@ -118,6 +133,39 @@ const Connection = ({phone}) => {
        Utils.showResponseDialog('אירעה שגיאה , יש לנסות שנית','שגיאה!')
     }
   }
+  const saveNote = async () => {
+    const apiKey = "a12345bC4@11!lo9987";
+    const parameters = new FormData();
+    parameters.append('update_note_voter', true);
+    parameters.append('apiKey', apiKey);
+    parameters.append('id', id);
+    parameters.append('note', textNote);
+
+    try {
+      const response = await fetch('https://tak.co.il/election/index.php', {
+        method: 'POST',
+        body: parameters,
+      });
+
+      if (response.ok) {
+        const responseData = await response.json(); // Parse the response as JSON
+        // console.log('Server response:', responseData);
+
+        // Process the responseData further, if needed
+        if (responseData.success === true) {
+          setSuccess(true);
+          getDataTable();
+        } else {
+          // Utils.showResponseDialog(responseData.message,'שגיאה!')
+          setError(responseData.message);
+        }
+      } else {
+        Utils.showResponseDialog('אירעה שגיאה , יש לנסות שנית','שגיאה!')
+      }
+    } catch (error) {
+       Utils.showResponseDialog('אירעה שגיאה , יש לנסות שנית','שגיאה!')
+    }
+  }
 const finishWriteAndSend = () =>{
   if(!error){
     setTextMsg('');
@@ -133,6 +181,7 @@ const finishCallAndSend = () =>{
 }
   return (
     <div className="connection-container">
+        <img onClick={()=>setEditNote(true)} src={editIcon} alt="edit" className="edit-note" />
       {!openConnection ? (
         <img onClick={showConnection} src={contact} alt="Contact" className="" />
       ) : (
@@ -199,6 +248,33 @@ const finishCallAndSend = () =>{
       </div>
       </div>}
       </div>}
+      {editNote && <div className='container-msg'>
+        {(success || error) ? <div className='msg-background'>
+        {error ? <div>{error}</div> : 
+        <div className='title-to-send-msg'>הערה עודכנה בהצלחה</div>}
+      <button className='close-write-msg' onClick={()=>{setEditNote(false); setSuccess(false); setError(false)}}>סגור</button>
+
+      </div>
+      : <div className='msg-background'>
+      <div className='title-to-send-msg'>{textNote == '' ? 'הוספת הערה' : 'ערוך הערה'} ל {name}</div>
+      {/* <div className='msg-to-phone'>בעת עריכת הערה, אם הייתה הערה קודמת, היא תמחק</div> */}
+        <textarea
+          id="note"
+          className='input-note'
+          name="note"
+          value={textNote}
+          onChange={handleChangeNote}
+          rows={5} // You can adjust the number of rows as needed
+        />
+        <div className='div-buttons'>
+
+      <button className='close-write-msg' onClick={()=>setEditNote(false)}>סגור</button>
+
+      <button className='send-msg-whatsapp' onClick={()=>saveNote()}>שלח</button>
+</div>
+        {/* <button onClick={()=>setWriteMsg(true)}>שלח הודעה נוספת</button> */}
+        </div> }
+        </div>}
     </div>
   );
 };

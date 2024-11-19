@@ -2,10 +2,12 @@
 .connection-container {
     position: relative;
     /* bottom: 20px; */
-    right: 20px;
+    right: 6px;
     cursor: pointer;
     /* z-index: 999; */
     min-height: 50px;
+    display: flex;
+    justify-content: space-around;
   }
   
   .div-connection {
